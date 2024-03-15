@@ -1,11 +1,12 @@
----
+# nginx-ingress.yaml
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: "ingress-app"
+  name: "ingress"
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/target-type: instance     # instance, ip
+    alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/scheme: internet-facing
 spec:
   rules:
@@ -13,5 +14,5 @@ spec:
       paths:
         - path: /*
           backend:
-            serviceName: "my-nginx"
+            serviceName: "nginx"
             servicePort: 80
