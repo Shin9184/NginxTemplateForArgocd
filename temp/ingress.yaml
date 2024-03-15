@@ -1,0 +1,17 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "ingress-app"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: instance     # instance, ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  rules:
+   - http:
+      paths:
+        - path: /*
+          backend:
+            serviceName: "my-nginx"
+            servicePort: 80
